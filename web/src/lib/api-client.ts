@@ -1,4 +1,13 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:8000" : "");
+
+function getApiUrl() {
+  if (!API_URL) {
+    throw new Error("API backend is not configured. Set NEXT_PUBLIC_API_URL for this deployment.");
+  }
+  return API_URL.replace(/\/$/, "");
+}
 
 export interface GenerateRequest {
   prompt: string;
@@ -39,14 +48,14 @@ async function streamJson(response: Response, onEvent: (event: SSEEvent) => void
 export async function generateDesign(request: GenerateRequest, onEvent: (event: SSEEvent) => void, token?: string) {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) headers.Authorization = `Bearer ${token}`;
-  const response = await fetch(`${API_URL}/v1/generate`, { method: "POST", headers, body: JSON.stringify(request) });
+  const response = await fetch(`${getApiUrl()}/v1/generate`, { method: "POST", headers, body: JSON.stringify(request) });
   await streamJson(response, onEvent);
 }
 
 export async function chatIterate(generationId: string, message: string, onEvent: (event: SSEEvent) => void, token?: string) {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) headers.Authorization = `Bearer ${token}`;
-  const response = await fetch(`${API_URL}/v1/chat`, { method: "POST", headers, body: JSON.stringify({ generation_id: generationId, message }) });
+  const response = await fetch(`${getApiUrl()}/v1/chat`, { method: "POST", headers, body: JSON.stringify({ generation_id: generationId, message }) });
   await streamJson(response, onEvent);
 }
 
@@ -54,7 +63,7 @@ export async function apiFetch<T>(path: string, token?: string, init?: RequestIn
   const headers = new Headers(init?.headers);
   headers.set("Content-Type", "application/json");
   if (token) headers.set("Authorization", `Bearer ${token}`);
-  const response = await fetch(`${API_URL}${path}`, { ...init, headers, cache: "no-store" });
+  const response = await fetch(`${getApiUrl()}${path}`, { ...init, headers, cache: "no-store" });
   if (!response.ok) throw new Error((await response.text()) || "API request failed");
   return response.json();
 }
