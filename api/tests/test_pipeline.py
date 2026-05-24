@@ -31,7 +31,7 @@ def test_build_rag_context_formats_ranked_patterns():
     assert "<nav>...</nav>" in context
 
 
-def test_build_chat_response_input_resends_developer_instructions_and_previous_id():
+def test_build_chat_response_input_uses_chat_completions_format():
     request = build_chat_response_input(
         generation={
             "app_name": "FitFlow",
@@ -43,6 +43,9 @@ def test_build_chat_response_input_resends_developer_instructions_and_previous_i
         message="Make it darker",
     )
 
-    assert request["previous_response_id"] == "resp_previous"
-    assert "developer" in request["input"][0]["role"]
-    assert "Make it darker" in json.dumps(request["input"])
+    # Chat Completions format: messages list, response_format, no previous_response_id
+    assert "messages" in request
+    assert "previous_response_id" not in request
+    assert request["response_format"] == {"type": "json_object"}
+    assert request["messages"][0]["role"] == "system"
+    assert "Make it darker" in json.dumps(request["messages"])

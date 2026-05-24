@@ -14,14 +14,16 @@ from app.core.openai_client import get_openai_client
 async def _step(name: str, prompt: str) -> dict[str, Any]:
     started = time.perf_counter()
     client = get_openai_client()
-    response = await client.responses.create(
-        model="gpt-4o",
-        input=[
-            {"role": "developer", "content": "You are a practical senior product designer. Be concise and actionable."},
+    from app.config import settings
+
+    response = await client.chat.completions.create(
+        model=settings.active_llm_model,
+        messages=[
+            {"role": "system", "content": "You are a practical senior product designer. Be concise and actionable."},
             {"role": "user", "content": prompt},
         ],
     )
-    output = response.output_text
+    output = response.choices[0].message.content or ""
     return {
         "name": name,
         "status": "completed",
