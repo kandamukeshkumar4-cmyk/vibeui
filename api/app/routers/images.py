@@ -15,7 +15,7 @@ from __future__ import annotations
 import asyncio
 from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from app.core.nim_images import (
@@ -24,7 +24,6 @@ from app.core.nim_images import (
     inject_images_into_html,
 )
 from app.middleware.auth import get_optional_user
-from app.utils.supabase import get_supabase
 
 router = APIRouter()
 
@@ -87,22 +86,23 @@ async def generate_single_image(
 
 @router.post("/enhance-screens", response_model=EnhanceScreensResponse)
 async def enhance_screens_with_images(
+    request: Request,
     body: EnhanceScreensRequest,
     user: dict | None = Depends(get_optional_user),
 ):
     """Take an existing saved generation and replace all gray placeholder divs
-    with real NIM-generated images. Updates the generation in Supabase.
+    with real NIM-generated images. Updates the generation in the database.
 
     Call this after /v1/generate completes to upgrade a design with real images.
     """
-    sb = get_supabase()
+    pool = request.app.state.pool
 
-    gen = sb.table("generations").select("*").eq("id", body.generation_id).single().execute()
-    if not gen.data:
+    row = await pool.fetchrow("SELECT * FROM generations WHERE id = $1", body.generation_id)
+    if row is None:
         raise HTTPException(status_code=404, detail="Generation not found")
 
-    generation = gen.data
-    screens: list[dict] = generation.get("screens", [])
+    generation = dict(row)
+    screens: list[dict] = generation.get("screens", []) or []
     app_name: str = generation.get("app_name", "App")
 
     enhanced_screens = []
@@ -129,9 +129,11 @@ async def enhance_screens_with_images(
         enhanced_screens.extend(results)
 
     # Save enhanced screens back to DB
-    sb.table("generations").update({"screens": enhanced_screens}).eq(
-        "id", body.generation_id
-    ).execute()
+    await pool.execute(
+        "UPDATE generations SET screens = $1 WHERE id = $2",
+        enhanced_screens,
+        body.generation_id,
+    )
 
     return EnhanceScreensResponse(
         generation_id=body.generation_id,
