@@ -1,10 +1,10 @@
-FROM ghcr.io/astral-sh/uv:python3.12-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install dependencies first (cached layer)
+# Install uv from PyPI, then use it to install project deps
 COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
+RUN pip install --no-cache-dir uv && uv sync --frozen --no-dev
 
 COPY . .
 
