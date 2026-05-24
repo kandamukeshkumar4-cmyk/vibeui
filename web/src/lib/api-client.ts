@@ -34,7 +34,7 @@ async function streamJson(response: Response, onEvent: (event: SSEEvent) => void
   while (true) {
     const { done, value } = await reader.read();
     if (done) break;
-    buffer += decoder.decode(value, { stream: true });
+    buffer += decoder.decode(value, { stream: true }).replace(/\r\n/g, "\n");
     const parts = buffer.split("\n\n");
     buffer = parts.pop() || "";
     for (const part of parts) {
