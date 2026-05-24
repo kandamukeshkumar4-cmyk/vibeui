@@ -94,10 +94,13 @@ async def generate_design(prompt: str, num_screens: int, style: str, platform: s
 
         yield sse_event("step_start", {"step": "generate", "message": "Generating mobile app screens..."})
         client = get_openai_client()
-        response = await client.responses.create(**build_generate_response_input(prompt, num_screens, style, platform, rag_context))
+        response = await client.chat.completions.create(
+            **build_generate_response_input(prompt, num_screens, style, platform, rag_context)
+        )
         response_id = response.id
-        total_tokens = getattr(getattr(response, "usage", None), "total_tokens", 0) or 0
-        text = response.output_text
+        usage = getattr(response, "usage", None)
+        total_tokens = getattr(usage, "total_tokens", 0) or 0
+        text = response.choices[0].message.content or "{}"
         payload = json.loads(text)
         normalized = normalize_generation_payload(payload, prompt, num_screens)
     except Exception as exc:
@@ -114,7 +117,7 @@ async def generate_design(prompt: str, num_screens: int, style: str, platform: s
     result = {
         **normalized,
         "num_screens": len(normalized["screens"]),
-        "model_used": settings.openai_model,
+        "model_used": settings.active_llm_model,
         "total_tokens": total_tokens,
         "latency_ms": int((time.perf_counter() - started) * 1000),
         "openai_response_id": response_id,

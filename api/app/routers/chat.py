@@ -29,8 +29,10 @@ async def chat_iterate(request: Request, body: dict, user: dict | None = Depends
         generation_dict["design_system"] = generation["design_system"]
         generation_dict["screens"] = generation["screens"]
         client = get_openai_client()
-        response = await client.responses.create(**build_chat_response_input(generation_dict, message))
-        payload = json.loads(response.output_text)
+        response = await client.chat.completions.create(
+            **build_chat_response_input(generation_dict, message)
+        )
+        payload = json.loads(response.choices[0].message.content or "{}")
         updated_screens = payload.get("updated_screens") or []
         for screen in updated_screens:
             screen["html"] = sanitize_generated_html(screen.get("html", ""))
