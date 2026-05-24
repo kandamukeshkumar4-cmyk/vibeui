@@ -9,7 +9,7 @@ from app.config import settings
 from app.db import lifespan
 from app.middleware.logging import RequestLoggingMiddleware
 from app.middleware.rate_limit import limiter
-from app.routers import agents, api_keys, chat, generate, health, history, projects, usage
+from app.routers import agents, api_keys, chat, generate, health, history, images, projects, usage
 
 app = FastAPI(
     title="VibeUI API",
@@ -38,4 +38,5 @@ app.include_router(api_keys.router, prefix="/v1", tags=["API Keys"])
 app.include_router(history.router, prefix="/v1", tags=["History"])
 app.include_router(usage.router, prefix="/v1", tags=["Usage"])
 app.include_router(agents.router, prefix="/v1", tags=["Agents"])
+app.include_router(images.router, prefix="/v1", tags=["Images (NIM)"])
 

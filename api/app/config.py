@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     supabase_jwks_url: str = ""
     supabase_jwt_audience: str = "authenticated"
     openai_api_key: str = ""
+    nvidia_api_key: str = ""
+    nvidia_base_url: str = "https://integrate.api.nvidia.com/v1"
+    nim_image_model: str = "black-forest-labs/flux-1-schnell"
+    nim_image_size: str = "1024x1024"
     cors_origins: str = "http://localhost:3000"
     port: int = 8000
     environment: str = "development"
