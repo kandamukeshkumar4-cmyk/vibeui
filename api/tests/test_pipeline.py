@@ -6,11 +6,34 @@ from app.core.responses import build_chat_response_input
 
 
 def test_parse_sse_payload_reads_data_events():
+    # Old wire format: sse_starlette-wrapped string with "data: " prefix.
     event = 'data: {"event":"done","data":{"id":"abc"}}\n\n'
 
     parsed = parse_sse_payload(event)
 
     assert parsed == {"event": "done", "data": {"id": "abc"}}
+
+
+def test_parse_sse_payload_reads_bare_json():
+    # New format from sse_event(): bare JSON without the "data: " prefix.
+    # parse_sse_payload must handle both so generate.py can inspect events
+    # before they are wrapped by EventSourceResponse.
+    event = '{"event":"done","data":{"id":"abc"}}'
+
+    parsed = parse_sse_payload(event)
+
+    assert parsed == {"event": "done", "data": {"id": "abc"}}
+
+
+def test_sse_event_returns_bare_json():
+    from app.core.designer import sse_event
+
+    result = sse_event("step_start", {"message": "ok"})
+
+    # Must be valid JSON without any "data: " prefix or trailing newlines.
+    parsed = json.loads(result)
+    assert parsed == {"event": "step_start", "data": {"message": "ok"}}
+    assert not result.startswith("data: ")
 
 
 def test_build_rag_context_formats_ranked_patterns():

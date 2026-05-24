@@ -45,10 +45,27 @@ async function streamJson(response: Response, onEvent: (event: SSEEvent) => void
   }
 }
 
-export async function generateDesign(request: GenerateRequest, onEvent: (event: SSEEvent) => void, token?: string) {
+export async function generateDesign(
+  request: GenerateRequest,
+  onEvent: (event: SSEEvent) => void,
+  token?: string,
+  onWarmingUp?: () => void,
+) {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) headers.Authorization = `Bearer ${token}`;
-  const response = await fetch(`${getApiUrl()}/v1/generate`, { method: "POST", headers, body: JSON.stringify(request) });
+  const url = `${getApiUrl()}/v1/generate`;
+  const body = JSON.stringify(request);
+
+  let response = await fetch(url, { method: "POST", headers, body });
+
+  // Render free tier cold-starts return 503 while the instance wakes up.
+  // Retry once after a short delay so the user doesn't see a silent failure.
+  if (response.status === 503) {
+    onWarmingUp?.();
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    response = await fetch(url, { method: "POST", headers, body });
+  }
+
   await streamJson(response, onEvent);
 }
 

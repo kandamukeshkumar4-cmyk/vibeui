@@ -17,12 +17,22 @@ from app.core.responses import build_generate_response_input
 
 
 def sse_event(event_type: str, data: dict[str, Any]) -> str:
-    return f"data: {json.dumps({'event': event_type, 'data': data})}\n\n"
+    # Return bare JSON — EventSourceResponse (sse_starlette) adds the
+    # "data: " prefix and trailing "\n\n" automatically when it serialises
+    # string yields.  Returning a pre-formatted "data: …\n\n" string caused
+    # the wire format to become "data: data: …" (double prefix), which made
+    # the frontend JSON.parse call throw a SyntaxError and screens never
+    # appeared.
+    return json.dumps({"event": event_type, "data": data})
 
 
 def parse_sse_payload(event: str) -> dict[str, Any]:
-    line = next((item for item in event.splitlines() if item.startswith("data: ")), "")
-    return json.loads(line.removeprefix("data: "))
+    # Accepts both bare JSON and the full wire format ("data: {json}").
+    for line in event.splitlines():
+        if line.startswith("data: "):
+            return json.loads(line.removeprefix("data: "))
+    # Fallback: treat the whole string as bare JSON.
+    return json.loads(event)
 
 
 def _fallback_design(prompt: str, num_screens: int) -> dict[str, Any]:

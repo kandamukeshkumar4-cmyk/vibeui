@@ -24,7 +24,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (request.nextUrl.pathname.startsWith("/dashboard") && !user) {
+  // Protect all authenticated routes — not just /dashboard.
+  // The middleware matcher already limits which paths reach this function, so
+  // every request that arrives here is for a protected route.  Redirect any
+  // unauthenticated visitor to /login regardless of the specific path.
+  if (!user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);

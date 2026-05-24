@@ -33,13 +33,18 @@ export function DesignStream({ dashboardMode = false }: DesignStreamProps) {
     setScreens([]);
     setStatus("Starting");
     try {
-      await generateDesign({ prompt, num_screens: dashboardMode ? 6 : 3, style: "modern", platform: "ios" }, (event: SSEEvent) => {
-        if (event.event === "step_start") setStatus((event.data as { message?: string }).message || "Working");
-        if (event.event === "warning") toast.warning((event.data as { message?: string }).message || "Using local fallback");
-        if (event.event === "screen_generated") setScreens((current) => [...current, event.data as Screen].sort((a, b) => a.order - b.order));
-        if (event.event === "saved") setGenerationId((event.data as { id: string }).id);
-        if (event.event === "done") setStatus("Complete");
-      });
+      await generateDesign(
+        { prompt, num_screens: dashboardMode ? 6 : 3, style: "modern", platform: "ios" },
+        (event: SSEEvent) => {
+          if (event.event === "step_start") setStatus((event.data as { message?: string }).message || "Working");
+          if (event.event === "warning") toast.warning((event.data as { message?: string }).message || "Using local fallback");
+          if (event.event === "screen_generated") setScreens((current) => [...current, event.data as Screen].sort((a, b) => a.order - b.order));
+          if (event.event === "saved") setGenerationId((event.data as { id: string }).id);
+          if (event.event === "done") setStatus("Complete");
+        },
+        undefined,
+        () => setStatus("Server warming up, retrying…"),
+      );
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Generation failed");
       setStatus("Failed");
