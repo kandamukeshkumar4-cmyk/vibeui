@@ -1,0 +1,17 @@
+# VibeUI CODEOWNERS
+# These owners are auto-requested for review on any PR touching these paths.
+
+# Global fallback — repo owner reviews everything
+* @kandamukeshkumar4-cmyk
+
+# Frontend
+/web/ @kandamukeshkumar4-cmyk
+
+# Backend
+/api/ @kandamukeshkumar4-cmyk
+
+# Database schema (extra care — changes affect prod data)
+/supabase/ @kandamukeshkumar4-cmyk
+
+# CI / GitHub config (extra care)
+/.github/ @kandamukeshkumar4-cmyk

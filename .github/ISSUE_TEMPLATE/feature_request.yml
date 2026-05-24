@@ -1,0 +1,44 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      placeholder: "Currently users can't export designs to Figma..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      placeholder: "Add an export button that converts the HTML screens to Figma frames via..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Frontend UI
+        - Design generation
+        - RAG / knowledge base
+        - Agent workflows
+        - API
+        - Auth / billing
+        - Developer experience
+        - CI / infra
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High — core functionality
+        - Medium — improves experience
+        - Low — nice to have

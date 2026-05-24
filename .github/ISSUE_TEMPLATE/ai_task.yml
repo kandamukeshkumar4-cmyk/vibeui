@@ -1,0 +1,68 @@
+name: AI Task (Codex / Claude / Cursor)
+description: Request an AI agent to implement a specific change
+labels: ["ai-task", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to assign work to an AI agent (Codex, Claude Code, or Cursor).
+        Be precise — the agent works from this issue alone.
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which agent should handle this?
+      options:
+        - Claude Code (claude)
+        - OpenAI Codex (codex)
+        - Cursor (cursor)
+        - Any
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area of the codebase
+      options:
+        - web/ — Next.js frontend
+        - api/ — FastAPI backend
+        - api/app/core/ — design pipeline / RAG
+        - supabase/ — database schema
+        - .github/ — CI / workflows
+        - Both web and api
+    validations:
+      required: true
+
+  - type: textarea
+    id: task
+    attributes:
+      label: Exact task description
+      description: What should the agent implement? Be specific about files, functions, and expected behavior.
+      placeholder: |
+        In `web/src/components/design/phone-mockup.tsx`, add a toggle button that switches between
+        light and dark preview mode. The button should appear at the top-right of the phone frame.
+        Use the existing Tailwind dark: classes. No new dependencies.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Toggle button visible on phone mockup
+        - [ ] Clicking it inverts background/text colors
+        - [ ] State persists per screen (not global)
+        - [ ] No TypeScript errors
+        - [ ] Builds cleanly
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context / files to read
+      placeholder: |
+        Read web/src/components/design/phone-mockup.tsx and web/src/components/design/design-stream.tsx first.
+        The DesignStream component manages the screen list.
