@@ -135,7 +135,10 @@ svg{display:inline-block;vertical-align:middle;flex-shrink:0}
 .divide-y>*+*{border-top:1px solid #e5e7eb!important}
 `;
 
+// The phone mockup iframe is ~256px wide (280px outer – 12px padding each side).
+// We design at 390px (iPhone 14) in the prompt and scale down to fit the frame.
+// 256 / 390 ≈ 0.656 — set as initial-scale so the browser handles the scaling.
 export function buildPreviewSrcDoc(html: string) {
-  return `<!doctype html><html><head><meta charset="utf-8" /><meta http-equiv="Content-Security-Policy" content="${CSP}" /><meta name="viewport" content="width=390,initial-scale=1,user-scalable=no" /><style>${BASE_CSS}</style></head><body>${html}</body></html>`;
+  return `<!doctype html><html><head><meta charset="utf-8" /><meta http-equiv="Content-Security-Policy" content="${CSP}" /><meta name="viewport" content="width=390,initial-scale=0.656,maximum-scale=0.656,user-scalable=no" /><style>${BASE_CSS}</style></head><body>${html}</body></html>`;
 }
 
