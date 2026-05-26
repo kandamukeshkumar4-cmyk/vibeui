@@ -265,7 +265,7 @@ const FoodyContent = ({ s }: { s: number }) => (
     {/* Banner */}
     <div style={{ margin:`0 ${10*s}px ${5*s}px`, background:"linear-gradient(135deg,#f97316,#ef4444)", borderRadius:10*s, padding:`${7*s}px ${10*s}px`, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
       <div>
-        <div style={{ fontSize:5.5*s, color:"rgba(255,255,255,0.8)", fontWeight:700 }}>TODAY&apos;S DEAL</div>
+        <div style={{ fontSize:5.5*s, color:"rgba(255,255,255,0.8)", fontWeight:700 }}>{"TODAY'S DEAL"}</div>
         <div style={{ fontSize:10*s, fontWeight:800, color:"white" }}>30% OFF</div>
         <div style={{ fontSize:5*s, color:"rgba(255,255,255,0.7)", marginTop:s }}>First order only</div>
       </div>
@@ -282,7 +282,7 @@ const FoodyContent = ({ s }: { s: number }) => (
     {/* Restaurants */}
     <div style={{ margin:`0 ${10*s}px` }}>
       <div style={{ fontSize:6*s, fontWeight:700, color:"#111827", marginBottom:4*s }}>Popular Near You</div>
-      {[{name:"Mario&apos;s Pizza",tag:"Italian · 20 min",e:"🍕",c:"#fee2e2",r:"4.8"},{name:"Tokyo Ramen",tag:"Japanese · 30 min",e:"🍜",c:"#ede9fe",r:"4.9"}].map((r,i)=>(
+      {[{name:"Mario's Pizza",tag:"Italian · 20 min",e:"🍕",c:"#fee2e2",r:"4.8"},{name:"Tokyo Ramen",tag:"Japanese · 30 min",e:"🍜",c:"#ede9fe",r:"4.9"}].map((r,i)=>(
         <div key={i} style={{ display:"flex", gap:6*s, background:"white", borderRadius:9*s, padding:`${5*s}px ${6*s}px`, marginBottom:4*s, boxShadow:"0 2px 8px rgba(0,0,0,0.06)", border:"1px solid rgba(0,0,0,0.04)" }}>
           <div style={{ width:34*s, height:34*s, borderRadius:8*s, background:r.c, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
             <span style={{ fontSize:18*s }}>{r.e}</span>
