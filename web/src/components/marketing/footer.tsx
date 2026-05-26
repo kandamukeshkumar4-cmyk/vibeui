@@ -29,7 +29,7 @@ const links = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-white/10" style={{ background: "rgba(2,8,23,0.6)" }}>
       <div className="mx-auto max-w-6xl px-4 py-14">
         <div className="grid gap-10 md:grid-cols-5">
           {/* Brand column */}
@@ -41,9 +41,9 @@ export function Footer() {
                   <path d="M9 6L11.5 7.5V10.5L9 12L6.5 10.5V7.5L9 6Z" fill="white" />
                 </svg>
               </div>
-              <span className="text-base font-bold text-slate-950">VibeUI</span>
+              <span className="text-base font-bold text-white">VibeUI</span>
             </Link>
-            <p className="mt-3 text-sm leading-6 text-slate-500">
+            <p className="mt-3 text-sm leading-6 text-slate-400">
               AI-powered mobile UI generation. From prompt to pixel in seconds.
             </p>
           </div>
@@ -51,13 +51,13 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <p className="mb-4 text-sm font-semibold text-slate-950">{category}</p>
+              <p className="mb-4 text-sm font-semibold text-slate-200">{category}</p>
               <ul className="space-y-3">
                 {items.map(({ label, href }) => (
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+                      className="text-sm text-slate-400 hover:text-white transition-colors"
                     >
                       {label}
                     </Link>
@@ -69,10 +69,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 sm:flex-row">
-          <p className="text-sm text-slate-400">© {new Date().getFullYear()} VibeUI. All rights reserved.</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="text-sm text-slate-500">© {new Date().getFullYear()} VibeUI. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 text-xs font-medium text-emerald-400">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
               All systems operational
             </span>

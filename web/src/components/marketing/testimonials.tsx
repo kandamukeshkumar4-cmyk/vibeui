@@ -27,15 +27,15 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section className="py-24">
       <div className="mx-auto max-w-6xl px-4">
         {/* Header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-600">Testimonials</p>
-          <h2 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-400">Testimonials</p>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Loved by builders
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
             From solo founders to product teams — here&apos;s what people are shipping with VibeUI.
           </p>
         </div>
@@ -45,7 +45,7 @@ export function Testimonials() {
           {testimonials.map(({ quote, name, role, initials, color }) => (
             <article
               key={name}
-              className="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8"
             >
               {/* Stars */}
               <div className="mb-5 flex gap-0.5">
@@ -57,7 +57,7 @@ export function Testimonials() {
               </div>
 
               {/* Quote */}
-              <blockquote className="flex-1 text-sm leading-7 text-slate-600">
+              <blockquote className="flex-1 text-sm leading-7 text-slate-300">
                 &ldquo;{quote}&rdquo;
               </blockquote>
 
@@ -67,8 +67,8 @@ export function Testimonials() {
                   {initials}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{name}</p>
-                  <p className="text-xs text-slate-500">{role}</p>
+                  <p className="text-sm font-semibold text-white">{name}</p>
+                  <p className="text-xs text-slate-400">{role}</p>
                 </div>
               </div>
             </article>

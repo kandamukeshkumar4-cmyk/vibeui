@@ -55,15 +55,15 @@ const plans = [
 
 export function PricingCards() {
   return (
-    <section id="pricing" className="bg-slate-50 py-24">
+    <section id="pricing" className="py-24">
       <div className="mx-auto max-w-6xl px-4">
         {/* Section header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-600">Pricing</p>
-          <h2 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-400">Pricing</p>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Simple, transparent pricing
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
             Start free, upgrade when you need more. No hidden fees, no surprise bills.
           </p>
         </div>
@@ -75,8 +75,8 @@ export function PricingCards() {
               key={name}
               className={`relative flex flex-col rounded-2xl p-8 ${
                 highlighted
-                  ? "bg-violet-600 text-white shadow-2xl shadow-violet-200 ring-1 ring-violet-500"
-                  : "border border-slate-200 bg-white shadow-sm"
+                  ? "bg-violet-600 text-white shadow-2xl shadow-violet-900/60 ring-1 ring-violet-500"
+                  : "border border-white/10 bg-white/5"
               }`}
             >
               {highlighted && (
@@ -86,25 +86,25 @@ export function PricingCards() {
               )}
 
               <div className="mb-6">
-                <h3 className={`text-lg font-semibold ${highlighted ? "text-violet-100" : "text-slate-950"}`}>
+                <h3 className={`text-lg font-semibold ${highlighted ? "text-violet-100" : "text-white"}`}>
                   {name}
                 </h3>
                 <div className="mt-3 flex items-end gap-1">
-                  <span className={`text-5xl font-bold tracking-tight ${highlighted ? "text-white" : "text-slate-950"}`}>
+                  <span className={`text-5xl font-bold tracking-tight ${highlighted ? "text-white" : "text-white"}`}>
                     {price}
                   </span>
                   <span className={`mb-1.5 text-sm ${highlighted ? "text-violet-200" : "text-slate-400"}`}>/mo</span>
                 </div>
-                <p className={`mt-2 text-sm ${highlighted ? "text-violet-200" : "text-slate-500"}`}>{description}</p>
+                <p className={`mt-2 text-sm ${highlighted ? "text-violet-200" : "text-slate-400"}`}>{description}</p>
               </div>
 
               <ul className="mb-8 flex-1 space-y-3">
                 {features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
-                    <div className={`mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${highlighted ? "bg-violet-400/30" : "bg-violet-50"}`}>
-                      <Check className={`h-2.5 w-2.5 ${highlighted ? "text-white" : "text-violet-600"}`} />
+                    <div className={`mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${highlighted ? "bg-violet-400/30" : "bg-violet-500/20"}`}>
+                      <Check className={`h-2.5 w-2.5 ${highlighted ? "text-white" : "text-violet-400"}`} />
                     </div>
-                    <span className={`text-sm ${highlighted ? "text-violet-100" : "text-slate-600"}`}>{f}</span>
+                    <span className={`text-sm ${highlighted ? "text-violet-100" : "text-slate-300"}`}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -123,7 +123,7 @@ export function PricingCards() {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-sm text-slate-400">
+        <p className="mt-10 text-center text-sm text-slate-500">
           All plans include a 14-day free trial. No credit card required to start.
         </p>
       </div>

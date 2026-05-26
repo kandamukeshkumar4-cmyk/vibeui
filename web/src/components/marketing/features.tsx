@@ -54,15 +54,15 @@ const features: Array<{
 
 export function Features() {
   return (
-    <section id="features" className="bg-slate-50 py-24">
+    <section id="features" className="py-24">
       <div className="mx-auto max-w-6xl px-4">
         {/* Section header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-600">Features</p>
-          <h2 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-400">Features</p>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Everything you need to ship faster
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
             VibeUI combines AI generation, design intelligence, and iteration tools into one seamless workflow.
           </p>
         </div>
@@ -72,13 +72,13 @@ export function Features() {
           {features.map(({ title, description, Icon, color, bg }) => (
             <article
               key={title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:border-violet-500/30 hover:bg-white/8 hover:shadow-lg hover:shadow-violet-900/20"
             >
-              <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${bg}`}>
-                <Icon className={`h-5 w-5 ${color}`} />
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/20 border border-violet-500/20">
+                <Icon className="h-5 w-5 text-violet-400" />
               </div>
-              <h3 className="mb-2 text-base font-semibold text-slate-950">{title}</h3>
-              <p className="text-sm leading-6 text-slate-500">{description}</p>
+              <h3 className="mb-2 text-base font-semibold text-white">{title}</h3>
+              <p className="text-sm leading-6 text-slate-400">{description}</p>
             </article>
           ))}
         </div>
