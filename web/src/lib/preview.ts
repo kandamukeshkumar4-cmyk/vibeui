@@ -136,9 +136,14 @@ svg{display:inline-block;vertical-align:middle;flex-shrink:0}
 `;
 
 // The phone mockup iframe is ~256px wide (280px outer – 12px padding each side).
-// We design at 390px (iPhone 14) in the prompt and scale down to fit the frame.
-// 256 / 390 ≈ 0.656 — set as initial-scale so the browser handles the scaling.
+// The AI generates HTML at 390px (iPhone 14 width).
+// Chrome ignores <meta viewport> inside iframes — the iframe always renders at its
+// own CSS width. Use CSS zoom instead: zoom:0.6564 shrinks layout + visual together,
+// so a 390px-wide design naturally occupies 256px of physical space in the frame.
+const ZOOM = 0.6564; // 256 / 390
+
 export function buildPreviewSrcDoc(html: string) {
-  return `<!doctype html><html><head><meta charset="utf-8" /><meta http-equiv="Content-Security-Policy" content="${CSP}" /><meta name="viewport" content="width=390,initial-scale=0.656,maximum-scale=0.656,user-scalable=no" /><style>${BASE_CSS}</style></head><body>${html}</body></html>`;
+  const zoomCss = `html,body{zoom:${ZOOM};-moz-transform:scale(${ZOOM});-moz-transform-origin:0 0;}`;
+  return `<!doctype html><html><head><meta charset="utf-8" /><meta http-equiv="Content-Security-Policy" content="${CSP}" /><meta name="viewport" content="width=device-width,initial-scale=1" /><style>${zoomCss}${BASE_CSS}</style></head><body>${html}</body></html>`;
 }
 
