@@ -1,6 +1,164 @@
 import { ArrowRight, Image, LayoutTemplate, Wand2 } from "lucide-react";
 import Link from "next/link";
 
+/* ── Phone 1: AI-generated crypto app ── */
+const CryptoPhone = () => (
+  <>
+    <div style={{ padding: "6px 10px 2px" }}>
+      <div style={{ fontSize: 6, color: "#94A3B8" }}>Portfolio</div>
+      <div style={{ fontSize: 15, fontWeight: 800, color: "white", lineHeight: 1.1 }}>
+        $48,291<span style={{ fontSize: 8, color: "#A78BFA" }}>.40</span>
+      </div>
+      <div style={{ fontSize: 6, color: "#22C55E", marginTop: 1 }}>▲ 12.4% this week</div>
+    </div>
+    {/* Chart */}
+    <div style={{ margin: "4px 8px 3px", background: "rgba(99,102,241,0.12)", borderRadius: 8, padding: "5px 6px" }}>
+      <svg width="100%" height="34" viewBox="0 0 110 34">
+        <defs>
+          <linearGradient id="cg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M0,30 L15,24 L28,27 L42,14 L56,20 L72,9 L88,15 L110,4" fill="none" stroke="#6366F1" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M0,30 L15,24 L28,27 L42,14 L56,20 L72,9 L88,15 L110,4 L110,34 L0,34Z" fill="url(#cg1)" />
+        <circle cx="110" cy="4" r="2.5" fill="#6366F1" />
+        <circle cx="110" cy="4" r="4.5" fill="#6366F1" fillOpacity="0.2" />
+      </svg>
+    </div>
+    {/* Coin list */}
+    <div style={{ margin: "0 8px" }}>
+      {[
+        { sym: "BTC", name: "Bitcoin", val: "$44,210", chg: "+8.2%", c: "#F97316" },
+        { sym: "ETH", name: "Ethereum", val: "$2,840", chg: "+5.1%", c: "#6366F1" },
+        { sym: "SOL", name: "Solana", val: "$182", chg: "+14.7%", c: "#8B5CF6" },
+      ].map((coin, i) => (
+        <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 0", borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <div style={{ width: 18, height: 18, borderRadius: "50%", background: coin.c + "25", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ fontSize: 7, fontWeight: 800, color: coin.c }}>{coin.sym[0]}</span>
+            </div>
+            <div>
+              <div style={{ fontSize: 7, fontWeight: 700, color: "white" }}>{coin.sym}</div>
+              <div style={{ fontSize: 5, color: "#64748B" }}>{coin.name}</div>
+            </div>
+          </div>
+          <div style={{ textAlign: "right" }}>
+            <div style={{ fontSize: 7, fontWeight: 600, color: "white" }}>{coin.val}</div>
+            <div style={{ fontSize: 6, fontWeight: 700, color: "#22C55E" }}>{coin.chg}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </>
+);
+
+/* ── Phone 2: Social feed (dark) ── */
+const SocialPhone = () => (
+  <>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "5px 10px 4px" }}>
+      <span style={{ fontSize: 10, fontWeight: 800, color: "white" }}>Feed</span>
+      <div style={{ display: "flex", gap: 6 }}>
+        <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: 7, color: "white" }}>🔔</span>
+        </div>
+        <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: 7, color: "white" }}>✉</span>
+        </div>
+      </div>
+    </div>
+    {[
+      {
+        user: "sarah_k", handle: "@sarah_k", time: "2m",
+        avatar: "SK", ac: "#EC4899",
+        text: "Just shipped v2.0 🚀 The new dark mode looks incredible. Users are loving it!",
+        likes: "1.2k", comments: "84", tag: "Design",
+      },
+      {
+        user: "alex.dev", handle: "@alex.dev", time: "18m",
+        avatar: "AD", ac: "#6366F1",
+        text: "Hot take: the best UI is invisible. Your users should feel the app, not see it.",
+        likes: "847", comments: "52", tag: "Dev",
+      },
+    ].map((post, i) => (
+      <div key={i} style={{ margin: "0 8px 5px", background: "rgba(255,255,255,0.05)", borderRadius: 9, padding: "6px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div style={{ display: "flex", gap: 5, marginBottom: 4 }}>
+          <div style={{ width: 20, height: 20, borderRadius: "50%", background: post.ac + "33", border: `1.5px solid ${post.ac}`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: 6, fontWeight: 800, color: post.ac }}>{post.avatar}</span>
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <span style={{ fontSize: 7, fontWeight: 700, color: "white" }}>{post.user}</span>
+              <span style={{ fontSize: 5, color: "#475569" }}>· {post.time}</span>
+              <span style={{ marginLeft: "auto", fontSize: 5, background: post.ac + "20", color: post.ac, borderRadius: 4, padding: "1px 4px", fontWeight: 600 }}>{post.tag}</span>
+            </div>
+            <p style={{ fontSize: 6, color: "#94A3B8", lineHeight: 1.4, marginTop: 2 }}>{post.text}</p>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 10, paddingTop: 3, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          <span style={{ fontSize: 6, color: "#EF4444" }}>♥ {post.likes}</span>
+          <span style={{ fontSize: 6, color: "#64748B" }}>💬 {post.comments}</span>
+          <span style={{ fontSize: 6, color: "#64748B", marginLeft: "auto" }}>↗ Share</span>
+        </div>
+      </div>
+    ))}
+  </>
+);
+
+/* ── Phone 3: E-commerce (dark) ── */
+const ShopPhone = () => (
+  <>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "5px 10px 3px" }}>
+      <span style={{ fontSize: 10, fontWeight: 800, color: "white" }}>ShopLux</span>
+      <div style={{ position: "relative" }}>
+        <div style={{ width: 16, height: 16, borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: 8 }}>🛍</span>
+        </div>
+        <div style={{ position: "absolute", top: -2, right: -2, width: 7, height: 7, borderRadius: "50%", background: "#EF4444", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: 4, color: "white", fontWeight: 700 }}>3</span>
+        </div>
+      </div>
+    </div>
+    {/* Search */}
+    <div style={{ margin: "0 8px 5px", height: 16, background: "rgba(255,255,255,0.06)", borderRadius: 6, display: "flex", alignItems: "center", paddingLeft: 6, border: "1px solid rgba(255,255,255,0.08)" }}>
+      <span style={{ fontSize: 5, color: "#475569" }}>🔍  Search products...</span>
+    </div>
+    {/* Featured banner */}
+    <div style={{ margin: "0 8px 5px", background: "linear-gradient(135deg,#4F46E5,#7C3AED)", borderRadius: 8, padding: "6px 8px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div>
+        <div style={{ fontSize: 5, color: "rgba(255,255,255,0.7)", fontWeight: 600, letterSpacing: 0.5 }}>SUMMER SALE</div>
+        <div style={{ fontSize: 9, fontWeight: 800, color: "white" }}>40% OFF</div>
+        <div style={{ fontSize: 5, color: "rgba(255,255,255,0.6)" }}>Limited time</div>
+      </div>
+      <span style={{ fontSize: 22 }}>👟</span>
+    </div>
+    {/* Products */}
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, margin: "0 8px" }}>
+      {[
+        { n: "Air Max Pro", p: "$149", e: "👟", c: "#3B82F6", badge: "New" },
+        { n: "Canvas Tote", p: "$89", e: "👜", c: "#EC4899", badge: "" },
+        { n: "Linen Shirt", p: "$65", e: "👕", c: "#10B981", badge: "Sale" },
+        { n: "Slim Wallet", p: "$45", e: "👛", c: "#F59E0B", badge: "" },
+      ].map((p, i) => (
+        <div key={i} style={{ background: "rgba(255,255,255,0.05)", borderRadius: 7, overflow: "hidden", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <div style={{ height: 28, background: p.c + "18", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+            <span style={{ fontSize: 14 }}>{p.e}</span>
+            {p.badge && (
+              <div style={{ position: "absolute", top: 2, right: 3, background: p.c, borderRadius: 3, padding: "1px 3px" }}>
+                <span style={{ fontSize: 4, color: "white", fontWeight: 700 }}>{p.badge}</span>
+              </div>
+            )}
+          </div>
+          <div style={{ padding: "3px 5px" }}>
+            <div style={{ fontSize: 5.5, fontWeight: 600, color: "#CBD5E1" }}>{p.n}</div>
+            <div style={{ fontSize: 7, fontWeight: 800, color: "white" }}>{p.p}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </>
+);
+
 const demos = [
   {
     Icon: Wand2,
@@ -8,45 +166,8 @@ const demos = [
     description:
       "Type any app idea — VibeUI generates complete polished screens in real-time. No templates, no starting points.",
     tag: "Most popular",
-    tagColor: "bg-violet-100 text-violet-700",
-    iconBg: "bg-violet-50",
-    iconColor: "text-violet-600",
-    phone: {
-      bg: "#0F172A",
-      content: (
-        <>
-          <div style={{ padding: "6px 8px 3px" }}>
-            <div style={{ fontSize: 6, color: "#94A3B8" }}>Crypto Portfolio</div>
-            <div style={{ fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.1 }}>$48,291<span style={{ fontSize: 7, color: "#A78BFA" }}>.40</span></div>
-            <div style={{ fontSize: 6, color: "#22C55E", marginTop: 1 }}>▲ 12.4% this week</div>
-          </div>
-          <div style={{ margin: "4px 8px", background: "rgba(99,102,241,0.15)", borderRadius: 7, padding: "5px 6px" }}>
-            <svg width="100%" height="32" viewBox="0 0 120 32">
-              <defs>
-                <linearGradient id="cryptoGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#6366F1" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d="M0,28 L20,22 L35,25 L50,12 L65,18 L80,8 L100,14 L120,4" fill="none" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" />
-              <path d="M0,28 L20,22 L35,25 L50,12 L65,18 L80,8 L100,14 L120,4 L120,32 L0,32 Z" fill="url(#cryptoGrad)" />
-              <circle cx="120" cy="4" r="3" fill="#6366F1" />
-            </svg>
-          </div>
-          <div style={{ margin: "3px 8px 0" }}>
-            {[{ s: "BTC", v: "+8.2%", c: "#F97316" }, { s: "ETH", v: "+5.1%", c: "#6366F1" }, { s: "SOL", v: "+14.7%", c: "#8B5CF6" }].map((coin, i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "3px 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: "50%", background: coin.c + "33" }} />
-                  <span style={{ fontSize: 7, fontWeight: 700, color: "white" }}>{coin.s}</span>
-                </div>
-                <span style={{ fontSize: 7, fontWeight: 700, color: "#22C55E" }}>{coin.v}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-    },
+    PhoneContent: CryptoPhone,
+    phoneBg: "#0A0F1E",
   },
   {
     Icon: Image,
@@ -54,38 +175,8 @@ const demos = [
     description:
       "Upload screenshots of an existing app — VibeUI recreates and improves the design, giving you a version you own.",
     tag: "Unique feature",
-    tagColor: "bg-sky-100 text-sky-700",
-    iconBg: "bg-sky-50",
-    iconColor: "text-sky-600",
-    phone: {
-      bg: "#F8FAFC",
-      content: (
-        <>
-          <div style={{ padding: "6px 8px 3px" }}>
-            <div style={{ fontSize: 9, fontWeight: 700, color: "#0F172A" }}>Social Feed</div>
-          </div>
-          {[
-            { user: "sarah_k", time: "2m ago", likes: "1.2k", c: "#EC4899" },
-            { user: "alex.dev", time: "15m ago", likes: "847", c: "#6366F1" },
-          ].map((post, i) => (
-            <div key={i} style={{ margin: "3px 8px", background: "white", borderRadius: 8, padding: "6px", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 5 }}>
-                <div style={{ width: 18, height: 18, borderRadius: "50%", background: post.c + "33", border: `2px solid ${post.c}` }} />
-                <div>
-                  <div style={{ fontSize: 7, fontWeight: 700, color: "#0F172A" }}>@{post.user}</div>
-                  <div style={{ fontSize: 5, color: "#94A3B8" }}>{post.time}</div>
-                </div>
-              </div>
-              <div style={{ height: 36, background: post.c + "18", borderRadius: 6, marginBottom: 4 }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                <span style={{ fontSize: 6, color: "#EF4444" }}>♥ {post.likes}</span>
-                <span style={{ fontSize: 6, color: "#94A3B8" }}>💬 Share</span>
-              </div>
-            </div>
-          ))}
-        </>
-      ),
-    },
+    PhoneContent: SocialPhone,
+    phoneBg: "#0F172A",
   },
   {
     Icon: LayoutTemplate,
@@ -93,41 +184,8 @@ const demos = [
     description:
       "Start from one of our curated templates — e-commerce, social, productivity — then customize with natural language.",
     tag: "Fastest start",
-    tagColor: "bg-emerald-100 text-emerald-700",
-    iconBg: "bg-emerald-50",
-    iconColor: "text-emerald-600",
-    phone: {
-      bg: "#FAFAFA",
-      content: (
-        <>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 8px 3px" }}>
-            <div style={{ fontSize: 9, fontWeight: 700, color: "#0F172A" }}>ShopLux</div>
-            <div style={{ fontSize: 7, color: "#6366F1", fontWeight: 600 }}>Cart (3)</div>
-          </div>
-          <div style={{ margin: "0 8px 4px", height: 16, background: "#F1F5F9", borderRadius: 5, display: "flex", alignItems: "center", paddingLeft: 6 }}>
-            <span style={{ fontSize: 5, color: "#94A3B8" }}>Search products...</span>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, margin: "0 8px" }}>
-            {[
-              { n: "Air Max", p: "$149", c: "#DBEAFE" },
-              { n: "Tote Bag", p: "$89", c: "#FCE7F3" },
-              { n: "Linen Shirt", p: "$65", c: "#D1FAE5" },
-              { n: "Slim Wallet", p: "$45", c: "#FEF3C7" },
-            ].map((p, i) => (
-              <div key={i} style={{ background: "white", borderRadius: 6, overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,0.07)" }}>
-                <div style={{ height: 30, background: p.c, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div style={{ width: 16, height: 10, background: "rgba(255,255,255,0.5)", borderRadius: 2 }} />
-                </div>
-                <div style={{ padding: "3px 4px" }}>
-                  <div style={{ fontSize: 5, fontWeight: 600, color: "#0F172A" }}>{p.n}</div>
-                  <div style={{ fontSize: 6, fontWeight: 700, color: "#0F172A" }}>{p.p}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-    },
+    PhoneContent: ShopPhone,
+    phoneBg: "#0A0F1E",
   },
 ];
 
@@ -148,32 +206,52 @@ export function SeeInAction() {
 
         {/* Demo cards */}
         <div className="grid gap-6 md:grid-cols-3">
-          {demos.map(({ Icon, title, description, tag, tagColor, iconBg, iconColor, phone }) => (
+          {demos.map(({ Icon, title, description, tag, PhoneContent, phoneBg }) => (
             <article
               key={title}
-              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:border-violet-500/40 hover:bg-white/8 hover:shadow-lg hover:shadow-violet-900/20"
+              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:border-violet-500/40 hover:shadow-lg hover:shadow-violet-900/20"
             >
-              {/* Real phone preview */}
-              <div className="mb-6 rounded-xl bg-white/5 border border-white/10 p-4 flex items-center justify-center">
+              {/* Phone preview */}
+              <div className="mb-6 rounded-xl p-3 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.07)" }}>
                 <div
-                  className="relative overflow-hidden rounded-2xl shadow-lg"
-                  style={{ width: 130, height: 200, background: phone.bg, fontFamily: "-apple-system, sans-serif" }}
+                  style={{
+                    width: 130,
+                    height: 210,
+                    borderRadius: 18,
+                    overflow: "hidden",
+                    background: phoneBg,
+                    fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+                    position: "relative",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)",
+                  }}
                 >
                   {/* Status bar */}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 8px 2px" }}>
-                    <span style={{ fontSize: 6, fontWeight: 700, color: phone.bg === "#F8FAFC" || phone.bg === "#FAFAFA" ? "#64748B" : "rgba(255,255,255,0.7)" }}>9:41</span>
-                    <div style={{ display: "flex", gap: 2 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 10px 2px" }}>
+                    <span style={{ fontSize: 6, fontWeight: 700, color: "rgba(255,255,255,0.6)" }}>9:41</span>
+                    <div style={{ display: "flex", gap: 2, alignItems: "flex-end" }}>
                       {[4, 6, 8].map((h, i) => (
-                        <div key={i} style={{ width: 2, height: h, borderRadius: 1, background: phone.bg === "#F8FAFC" || phone.bg === "#FAFAFA" ? "#94A3B8" : "rgba(255,255,255,0.5)" }} />
+                        <div key={i} style={{ width: 2, height: h, borderRadius: 1, background: "rgba(255,255,255,0.4)" }} />
                       ))}
+                      <div style={{ width: 8, height: 5, borderRadius: 1, border: "1px solid rgba(255,255,255,0.4)", marginLeft: 2, display: "flex", alignItems: "center", paddingLeft: 1 }}>
+                        <div style={{ width: 4, height: 3, background: "#22C55E", borderRadius: 0.5 }} />
+                      </div>
                     </div>
                   </div>
-                  {phone.content}
+                  <PhoneContent />
                   {/* Bottom nav */}
-                  <div className="absolute bottom-0 left-0 right-0 flex justify-around items-center px-4 py-1.5"
-                    style={{ background: phone.bg === "#F8FAFC" || phone.bg === "#FAFAFA" ? "rgba(255,255,255,0.95)" : "rgba(0,0,0,0.3)", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                    {[0, 1, 2, 3].map((i) => (
-                      <div key={i} style={{ width: 12, height: 12, borderRadius: 3, background: i === 0 ? "#6366F1" : "rgba(148,163,184,0.3)" }} />
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    display: "flex", justifyContent: "space-around", alignItems: "center",
+                    padding: "5px 16px 6px",
+                    background: "rgba(0,0,0,0.5)",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    backdropFilter: "blur(8px)",
+                  }}>
+                    {["⊞", "🔍", "♡", "👤"].map((icon, i) => (
+                      <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                        <span style={{ fontSize: 9, opacity: i === 0 ? 1 : 0.35 }}>{icon}</span>
+                        {i === 0 && <div style={{ width: 12, height: 2, background: "#6366F1", borderRadius: 1 }} />}
+                      </div>
                     ))}
                   </div>
                 </div>
