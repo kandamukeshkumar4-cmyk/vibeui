@@ -251,9 +251,9 @@ const phones: PhoneDef[] = [
           </div>
         </div>
         <div style={{ display:"flex", gap:6, padding:"0 10px 5px", overflow:"hidden" }}>
-          {[{l:"Your Story",isAdd:true},{l:"sarah_k",ring:"linear-gradient(45deg,#f09433,#bc1888)"},{l:"alex.d",ring:"linear-gradient(45deg,#405de6,#833ab4)"},{l:"mia.r",ring:"linear-gradient(45deg,#f9a825,#e91e63)"},{l:"jun",ring:"linear-gradient(45deg,#00bcd4,#1976d2)"}].map((s,i)=>(
+          {([{l:"Your Story",isAdd:true},{l:"sarah_k",ring:"linear-gradient(45deg,#f09433,#bc1888)"},{l:"alex.d",ring:"linear-gradient(45deg,#405de6,#833ab4)"},{l:"mia.r",ring:"linear-gradient(45deg,#f9a825,#e91e63)"},{l:"jun",ring:"linear-gradient(45deg,#00bcd4,#1976d2)"}] as Array<{l:string;isAdd?:boolean;ring?:string}>).map((s,i)=>(
             <div key={i} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:2.5, flexShrink:0 }}>
-              <div style={{ width:24, height:24, borderRadius:"50%", background:i===0?"transparent":(s as any).ring, padding:1.5 }}>
+              <div style={{ width:24, height:24, borderRadius:"50%", background:i===0?"transparent":s.ring, padding:1.5 }}>
                 <div style={{ width:"100%", height:"100%", borderRadius:"50%", background:i===0?"rgba(255,255,255,0.08)":"#1a1a1a", border:i===0?"2px dashed rgba(255,255,255,0.25)":"2px solid #0f0f0f", display:"flex", alignItems:"center", justifyContent:"center" }}>
                   <span style={{ fontSize:i===0?9:7.5, color:"white", fontWeight:800 }}>{i===0?"+":(s.l.slice(0,2).toUpperCase())}</span>
                 </div>
@@ -382,13 +382,13 @@ const phones: PhoneDef[] = [
             <div style={{ width:6, height:6, borderRadius:2, background:"#5b6af7" }} />
             <span style={{ fontSize:5, color:"rgba(255,255,255,0.4)", fontWeight:700, letterSpacing:0.5 }}>DESIGN SYSTEM</span>
           </div>
-          {[{t:"Component audit",done:true},{t:"Update button variants",done:true},{t:"Dark mode tokens",done:false,p:"HIGH"}].map((task,ti)=>(
+          {([{t:"Component audit",done:true},{t:"Update button variants",done:true},{t:"Dark mode tokens",done:false,p:"HIGH"}] as Array<{t:string;done?:boolean;p?:string}>).map((task,ti)=>(
             <div key={ti} style={{ display:"flex", alignItems:"center", gap:5, padding:"3.5px 6px", background:"rgba(255,255,255,0.03)", borderRadius:5, marginBottom:2.5, borderLeft:"2.5px solid"+(task.done?"rgba(91,106,247,0.4)":"#5b6af7") }}>
               <div style={{ width:10, height:10, borderRadius:2.5, background:task.done?"#5b6af7":"transparent", border:task.done?"none":"1px solid rgba(255,255,255,0.2)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                 {task.done && <span style={{ fontSize:5.5, color:"white" }}>✓</span>}
               </div>
               <span style={{ flex:1, fontSize:6, color:task.done?"rgba(255,255,255,0.25)":"rgba(255,255,255,0.8)", textDecoration:task.done?"line-through":"none" }}>{task.t}</span>
-              {(task as any).p && <span style={{ fontSize:4, background:"rgba(248,113,113,0.15)", color:"#f87171", borderRadius:3, padding:"1px 3px", fontWeight:700 }}>{(task as any).p}</span>}
+              {task.p && <span style={{ fontSize:4, background:"rgba(248,113,113,0.15)", color:"#f87171", borderRadius:3, padding:"1px 3px", fontWeight:700 }}>{task.p}</span>}
             </div>
           ))}
         </div>
@@ -397,11 +397,11 @@ const phones: PhoneDef[] = [
             <div style={{ width:6, height:6, borderRadius:2, background:"#34d399" }} />
             <span style={{ fontSize:5, color:"rgba(255,255,255,0.4)", fontWeight:700, letterSpacing:0.5 }}>API V3</span>
           </div>
-          {[{t:"Auth endpoints",p:"MED"},{t:"Rate limiting"}].map((task,ti)=>(
+          {([{t:"Auth endpoints",p:"MED"},{t:"Rate limiting"}] as Array<{t:string;p?:string}>).map((task,ti)=>(
             <div key={ti} style={{ display:"flex", alignItems:"center", gap:5, padding:"3.5px 6px", background:"rgba(255,255,255,0.03)", borderRadius:5, marginBottom:2.5, borderLeft:"2.5px solid rgba(52,211,153,0.5)" }}>
               <div style={{ width:10, height:10, borderRadius:2.5, background:"transparent", border:"1px solid rgba(255,255,255,0.2)", flexShrink:0 }} />
               <span style={{ flex:1, fontSize:6, color:"rgba(255,255,255,0.8)" }}>{task.t}</span>
-              {(task as any).p && <span style={{ fontSize:4, background:"rgba(251,191,36,0.15)", color:"#fbbf24", borderRadius:3, padding:"1px 3px", fontWeight:700 }}>{(task as any).p}</span>}
+              {task.p && <span style={{ fontSize:4, background:"rgba(251,191,36,0.15)", color:"#fbbf24", borderRadius:3, padding:"1px 3px", fontWeight:700 }}>{task.p}</span>}
             </div>
           ))}
         </div>
