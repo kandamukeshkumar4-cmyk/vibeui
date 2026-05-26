@@ -1,24 +1,87 @@
-import { Braces, Layers, RadioTower, Workflow } from "lucide-react";
+import { Braces, Layers, RadioTower, Sparkles, Wand2, Workflow } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-const features: Array<{ title: string; description: string; Icon: LucideIcon }> = [
-  { title: "RAG-Powered Design", description: "Searches a design-pattern knowledge base before generating screens.", Icon: Layers },
-  { title: "Agent Workflows", description: "Runs critique, competitor analysis, and accessibility audits.", Icon: Workflow },
-  { title: "API-First", description: "Use VibeUI from the dashboard or programmatically with scoped API keys.", Icon: Braces },
-  { title: "Real-Time Streaming", description: "Watch design steps and screens arrive through SSE.", Icon: RadioTower },
+const features: Array<{
+  title: string;
+  description: string;
+  Icon: LucideIcon;
+  color: string;
+  bg: string;
+}> = [
+  {
+    title: "AI-Powered Generation",
+    description: "Describe any app concept in plain English and watch fully-formed screens appear in seconds — no design experience needed.",
+    Icon: Sparkles,
+    color: "text-violet-600",
+    bg: "bg-violet-50",
+  },
+  {
+    title: "RAG Design Intelligence",
+    description: "Every generation is backed by a curated knowledge base of design patterns, ensuring results that are both beautiful and usable.",
+    Icon: Layers,
+    color: "text-indigo-600",
+    bg: "bg-indigo-50",
+  },
+  {
+    title: "One-Click Iteration",
+    description: "Not happy with a result? Tweak the prompt or regenerate with a single click. Iterate until it's exactly right.",
+    Icon: Wand2,
+    color: "text-sky-600",
+    bg: "bg-sky-50",
+  },
+  {
+    title: "Agent Workflows",
+    description: "Automated critique, accessibility audits, and competitor analysis agents run in the background to refine every screen.",
+    Icon: Workflow,
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+  },
+  {
+    title: "Real-Time Streaming",
+    description: "Watch your UI materialize step by step through live streaming — no waiting for a batch job to finish.",
+    Icon: RadioTower,
+    color: "text-orange-600",
+    bg: "bg-orange-50",
+  },
+  {
+    title: "API-First Platform",
+    description: "Integrate VibeUI directly into your workflow with scoped API keys and a clean REST interface.",
+    Icon: Braces,
+    color: "text-pink-600",
+    bg: "bg-pink-50",
+  },
 ];
 
 export function Features() {
   return (
-    <section id="features" className="border-y border-slate-200 bg-white py-16">
-      <div className="mx-auto grid max-w-6xl gap-4 px-4 md:grid-cols-4">
-        {features.map(({ title, description, Icon }) => (
-          <article key={title} className="rounded-lg border border-slate-200 p-5">
-            <Icon className="h-5 w-5 text-slate-900" />
-            <h2 className="mt-4 font-semibold text-slate-950">{title}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
-          </article>
-        ))}
+    <section id="features" className="bg-slate-50 py-24">
+      <div className="mx-auto max-w-6xl px-4">
+        {/* Section header */}
+        <div className="mb-14 text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-600">Features</p>
+          <h2 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+            Everything you need to ship faster
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
+            VibeUI combines AI generation, design intelligence, and iteration tools into one seamless workflow.
+          </p>
+        </div>
+
+        {/* Feature grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map(({ title, description, Icon, color, bg }) => (
+            <article
+              key={title}
+              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl ${bg}`}>
+                <Icon className={`h-5 w-5 ${color}`} />
+              </div>
+              <h3 className="mb-2 text-base font-semibold text-slate-950">{title}</h3>
+              <p className="text-sm leading-6 text-slate-500">{description}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
