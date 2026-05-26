@@ -97,7 +97,7 @@ export function SeeInAction() {
             Three ways to generate
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
-            Whether you're starting from an idea, a screenshot, or a template — VibeUI has a generation mode for you.
+            Whether you&apos;re starting from an idea, a screenshot, or a template — VibeUI has a generation mode for you.
           </p>
         </div>
 

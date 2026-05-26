@@ -36,7 +36,7 @@ export function Testimonials() {
             Loved by builders
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
-            From solo founders to product teams — here's what people are shipping with VibeUI.
+            From solo founders to product teams — here&apos;s what people are shipping with VibeUI.
           </p>
         </div>
 

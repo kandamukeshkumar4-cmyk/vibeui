@@ -24,7 +24,7 @@ function PhoneFitFlow() {
       {/* Progress ring card */}
       <div className="mx-4 rounded-2xl p-3" style={{ background: "#1E293B" }}>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] font-semibold text-slate-400">TODAY'S GOAL</p>
+          <p className="text-[10px] font-semibold text-slate-400">{"TODAY'S GOAL"}</p>
           <span className="text-[10px] text-green-400 font-semibold">78%</span>
         </div>
         <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ function PhoneFitFlow() {
       </div>
       {/* Workout cards */}
       <div className="px-4 mt-3 space-y-2">
-        <p className="text-[10px] font-semibold text-slate-400 mb-1">TODAY'S WORKOUTS</p>
+        <p className="text-[10px] font-semibold text-slate-400 mb-1">{"TODAY'S WORKOUTS"}</p>
         {[
           { name: "Morning Run", dur: "32 min", color: "#6366F1", done: true },
           { name: "Core Strength", dur: "20 min", color: "#F59E0B", done: false },
