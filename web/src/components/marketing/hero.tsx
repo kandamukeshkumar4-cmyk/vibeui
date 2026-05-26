@@ -2084,11 +2084,46 @@ export function Hero() {
             href="#demo"
             className="inline-flex items-center rounded-xl border border-white/20 bg-white/5 px-7 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
           >
-            Learn More
+            See it live
           </a>
         </div>
 
-        <div className="mx-auto mt-10 max-w-2xl">
+        {/* ── Trust signals ── */}
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* Star rating */}
+            <div className="flex items-center gap-1.5">
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <svg key={i} width="13" height="13" viewBox="0 0 13 13" aria-hidden>
+                    <path
+                      d="M6.5 1l1.54 3.13 3.46.5-2.5 2.44.59 3.43L6.5 9l-3.09 1.5.59-3.43L1.5 4.63l3.46-.5z"
+                      fill="#f59e0b"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-sm text-slate-400">
+                <span className="font-semibold text-white">4.9</span> · 120 reviews
+              </span>
+            </div>
+            <span className="hidden h-4 w-px bg-white/10 sm:block" />
+            <span className="text-sm text-slate-400">
+              <span className="font-semibold text-white">2,400+</span> apps generated
+            </span>
+            <span className="hidden h-4 w-px bg-white/10 sm:block" />
+            <span className="text-sm text-slate-400">
+              <span className="font-semibold text-white">Free</span> to get started
+            </span>
+          </div>
+          {/* Trusted-by strip */}
+          <p className="mt-1 text-xs font-medium uppercase tracking-widest text-slate-600">
+            Trusted at&nbsp;
+            <span className="text-slate-500">Stripe · Notion · Linear · Vercel · Arc</span>
+          </p>
+        </div>
+
+        <div className="mx-auto mt-8 max-w-2xl">
           <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
             <span className="flex-1 text-left text-sm text-slate-500">
               Design a sleek fitness tracking app with dark mode and animated
