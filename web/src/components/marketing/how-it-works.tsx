@@ -1,4 +1,4 @@
-import { ArrowRight, Lightbulb, MousePointerClick, Repeat2, Rocket } from "lucide-react";
+import { Lightbulb, MousePointerClick, Repeat2, Rocket } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const steps: Array<{
@@ -9,26 +9,30 @@ const steps: Array<{
 }> = [
   {
     number: "01",
-    title: "Describe your idea",
-    description: "Type a natural-language prompt — 'a fitness app with dark mode and animated charts' — as specific or vague as you like.",
+    title: "Describe Your App",
+    description:
+      "Type a natural-language prompt — describe your app concept, target audience, and desired style. Be as specific or as broad as you like.",
     Icon: Lightbulb,
   },
   {
     number: "02",
-    title: "AI designs it instantly",
-    description: "Our model generates complete, pixel-ready mobile screens with layouts, colors, typography, and realistic content.",
+    title: "AI Generation",
+    description:
+      "Our AI model instantly generates complete, pixel-ready mobile screens with layouts, colors, typography, and realistic content tailored to your vision.",
     Icon: Rocket,
   },
   {
     number: "03",
-    title: "Iterate in seconds",
-    description: "Ask for changes in plain English, swap color palettes, or regenerate individual screens until the design is exactly right.",
+    title: "Refine & Iterate",
+    description:
+      "Ask for changes in plain English, swap color palettes, or regenerate individual screens until every detail is exactly right.",
     Icon: Repeat2,
   },
   {
     number: "04",
-    title: "Export and ship",
-    description: "Copy screen specs, share a preview link, or call the API to integrate VibeUI into your own product pipeline.",
+    title: "Export Your Design",
+    description:
+      "Copy screen specs, share a preview link, or call the API to integrate VibeUI into your own product pipeline and ship faster.",
     Icon: MousePointerClick,
   },
 ];
@@ -39,12 +43,14 @@ export function HowItWorks() {
       <div className="mx-auto max-w-6xl px-4">
         {/* Section header */}
         <div className="mb-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-violet-400">How it works</p>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-blue-400">
+            How it works
+          </p>
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            From prompt to product in minutes
+            How it works
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
-            Four simple steps — no design background, no Figma license, no friction.
+            Transform your app ideas into beautiful UI designs in just a few simple steps.
           </p>
         </div>
 
@@ -57,8 +63,8 @@ export function HowItWorks() {
             <div key={number} className="relative flex flex-col items-center text-center">
               {/* Step badge */}
               <div className="relative z-10 mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-sm">
-                <Icon className="h-6 w-6 text-violet-400" />
-                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-violet-600 text-[10px] font-bold text-white">
+                <Icon className="h-6 w-6 text-blue-400" />
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
                   {index + 1}
                 </span>
               </div>
@@ -66,16 +72,6 @@ export function HowItWorks() {
               <p className="text-sm leading-6 text-slate-400">{description}</p>
             </div>
           ))}
-        </div>
-
-        {/* CTA row */}
-        <div className="mt-16 flex justify-center">
-          <a
-            href="/signup"
-            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-violet-900/40 hover:bg-violet-700 transition-colors"
-          >
-            Start for free <ArrowRight className="h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
