@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     groq_api_key: str = ""
     groq_base_url: str = "https://api.groq.com/openai/v1"
     groq_model: str = "llama-3.3-70b-versatile"
+    gemini_api_key: str = ""
+    gemini_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
+    gemini_model: str = "gemini-2.5-flash"
     nvidia_api_key: str = ""
     nvidia_base_url: str = "https://integrate.api.nvidia.com/v1"
     nim_image_model: str = "black-forest-labs/flux-1-schnell"
@@ -28,18 +31,26 @@ class Settings(BaseSettings):
 
     @property
     def active_llm_key(self) -> str:
-        """Return Groq key if available, else OpenAI key."""
-        return self.groq_api_key or self.openai_api_key
+        """Priority: Gemini → Groq → OpenAI."""
+        return self.gemini_api_key or self.groq_api_key or self.openai_api_key
 
     @property
     def active_llm_base_url(self) -> str | None:
-        """Return Groq base URL if using Groq, else None (OpenAI default)."""
-        return self.groq_base_url if self.groq_api_key else None
+        """Return provider base URL; None means OpenAI default."""
+        if self.gemini_api_key:
+            return self.gemini_base_url
+        if self.groq_api_key:
+            return self.groq_base_url
+        return None
 
     @property
     def active_llm_model(self) -> str:
-        """Return Groq model if using Groq, else configured OpenAI model."""
-        return self.groq_model if self.groq_api_key else self.openai_model
+        """Return model for the active provider."""
+        if self.gemini_api_key:
+            return self.gemini_model
+        if self.groq_api_key:
+            return self.groq_model
+        return self.openai_model
     cors_origins: str = "http://localhost:3000"
     port: int = 8000
     environment: str = "development"

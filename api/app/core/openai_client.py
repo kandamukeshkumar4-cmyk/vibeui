@@ -18,7 +18,7 @@ def get_openai_client() -> AsyncOpenAI:
     if not settings.active_llm_key:
         raise HTTPException(
             status_code=503,
-            detail="No LLM API key configured. Set GROQ_API_KEY or OPENAI_API_KEY.",
+            detail="No LLM API key configured. Set GEMINI_API_KEY, GROQ_API_KEY, or OPENAI_API_KEY.",
         )
     return AsyncOpenAI(
         api_key=settings.active_llm_key,
