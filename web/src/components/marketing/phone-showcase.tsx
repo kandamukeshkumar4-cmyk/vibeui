@@ -170,10 +170,10 @@ export function PhonePreviewStage({ children, className = "" }: { children: Reac
   );
 }
 
-export function HeroFeaturedPhone({ phone }: { phone: PhoneShowcaseDef }) {
+export function HeroFeaturedPhone({ phone, width = 260 }: { phone: PhoneShowcaseDef; width?: number }) {
   return (
     <div className="marketing-reveal relative z-10">
-      <PhoneFrame phone={phone} width={220} />
+      <PhoneFrame phone={phone} width={width} />
     </div>
   );
 }

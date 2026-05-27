@@ -57,14 +57,14 @@ export function Hero() {
           </div>
 
           {/* Featured phones */}
-          <div className="relative flex items-center justify-center min-h-[420px] marketing-reveal-delayed">
+          <div className="relative flex items-center justify-center min-h-[540px] marketing-reveal-delayed">
             <div className="absolute left-0 top-8 hidden opacity-90 sm:block lg:left-2">
-              <PhoneFrame phone={sideLeft} width={160} />
+              <PhoneFrame phone={sideLeft} width={200} />
             </div>
             <div className="absolute right-0 top-12 hidden opacity-90 sm:block lg:right-2">
-              <PhoneFrame phone={sideRight} width={160} />
+              <PhoneFrame phone={sideRight} width={200} />
             </div>
-            <HeroFeaturedPhone phone={featured} />
+            <HeroFeaturedPhone phone={featured} width={270} />
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export function Hero() {
           style={{ width: "max-content", paddingLeft: 16 }}
         >
           {MARQUEE_PHONES.map((phone, i) => (
-            <PhoneFrame key={`${phone.id}-${i}`} phone={phone} width={188} />
+            <PhoneFrame key={`${phone.id}-${i}`} phone={phone} width={230} />
           ))}
         </div>
       </div>
