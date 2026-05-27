@@ -1,3 +1,10 @@
+import {
+  marketingCard,
+  marketingEyebrow,
+  marketingH2,
+  marketingLead,
+} from "@/lib/marketing-styles";
+
 export function ProblemAgitate() {
   const pains = [
     {
@@ -18,47 +25,32 @@ export function ProblemAgitate() {
   ];
 
   return (
-    <section className="relative py-24 overflow-hidden">
-      {/* Subtle danger glow behind the pain cards */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-96 w-[700px] rounded-full blur-3xl opacity-10"
-        style={{ background: "radial-gradient(ellipse,#ef4444 0%,transparent 70%)" }}
-      />
-
+    <section className="relative overflow-hidden py-24">
       <div className="relative mx-auto max-w-6xl px-4">
-        {/* Header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-red-400">
-            The old way
-          </p>
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <p className={`${marketingEyebrow} text-[rgba(120,40,40,0.7)]`}>The old way</p>
+          <h2 className={marketingH2}>
             Design tools{" "}
-            <span className="italic text-slate-500">weren&apos;t</span> built for speed
+            <span className="italic text-muted">weren&apos;t</span> built for speed
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
+          <p className={marketingLead}>
             You have a great idea. But the path from idea to polished UI is
             slow, costly, and endlessly frustrating.
           </p>
         </div>
 
-        {/* Pain cards */}
         <div className="grid gap-5 md:grid-cols-3">
           {pains.map((pain) => (
             <div
               key={pain.title}
-              className="rounded-2xl border border-red-500/15 p-7 transition-colors hover:border-red-500/30"
-              style={{ background: "rgba(239,68,68,0.04)" }}
+              className={`${marketingCard} border-[rgba(120,40,40,0.15)] hover:border-[rgba(120,40,40,0.25)]`}
             >
-              {/* X marker */}
               <div className="mb-5 flex items-center gap-3">
-                <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                  style={{ background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.2)" }}
-                >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[rgba(120,40,40,0.2)] bg-[rgba(120,40,40,0.06)]">
                   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
                     <path
                       d="M2 2l10 10M12 2L2 12"
-                      stroke="#ef4444"
+                      stroke="#8b4040"
                       strokeWidth="2.2"
                       strokeLinecap="round"
                     />
@@ -66,33 +58,29 @@ export function ProblemAgitate() {
                 </div>
                 <span className="text-xl">{pain.icon}</span>
               </div>
-              <h3 className="mb-2 text-base font-semibold text-white">
+              <h3 className="mb-2 text-base font-semibold text-foreground">
                 {pain.title}
               </h3>
-              <p className="text-sm leading-6 text-slate-400">{pain.body}</p>
+              <p className="text-sm leading-6 text-muted">{pain.body}</p>
             </div>
           ))}
         </div>
 
-        {/* Transition bridge — pain → solution */}
         <div className="mt-20 flex flex-col items-center gap-4 text-center">
-          <p className="text-sm font-medium text-slate-500 uppercase tracking-widest">
+          <p className="text-sm font-medium uppercase tracking-widest text-muted">
             There&apos;s a better way
           </p>
           <div
             className="h-12 w-px"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(239,68,68,0.3), rgba(59,130,246,0.8))",
+                "linear-gradient(to bottom, rgba(120,40,40,0.25), rgba(28,28,28,0.5))",
             }}
           />
-          <div
-            className="flex h-9 w-9 items-center justify-center rounded-full text-white text-sm font-bold shadow-lg shadow-blue-900/50"
-            style={{ background: "linear-gradient(135deg,#2563eb,#3b82f6)" }}
-          >
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-sm font-semibold text-[#fcfbf8]">
             ↓
           </div>
-          <p className="text-2xl font-bold text-white tracking-tight">
+          <p className="text-2xl font-semibold tracking-[-0.02em] text-foreground">
             Meet VibeUI
           </p>
         </div>

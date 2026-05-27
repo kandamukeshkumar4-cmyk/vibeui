@@ -1,21 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8fb;
-  --foreground: #111827;
+  --background: #f7f4ed;
+  --foreground: #1c1c1c;
+  --muted: #5f5f5d;
+  --border: #eceae4;
+  --surface-highlight: #fcfbf8;
+  --charcoal-40: rgba(28, 28, 28, 0.4);
+  --charcoal-4: rgba(28, 28, 28, 0.04);
+  --focus-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
 
 button,
@@ -30,8 +38,12 @@ iframe {
 }
 
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-track {
@@ -40,4 +52,45 @@ iframe {
 
 .marquee-track:hover {
   animation-play-state: paused;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+
+/* Warm hero wash (Lovable DESIGN.md §6) */
+.hero-wash {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 0%, rgba(255, 210, 180, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 10% 20%, rgba(200, 220, 255, 0.25) 0%, transparent 50%),
+    var(--background);
+}
+
+.marketing-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marketing-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marketing-reveal {
+  animation: marketing-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.marketing-reveal-delayed {
+  animation: marketing-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
 }

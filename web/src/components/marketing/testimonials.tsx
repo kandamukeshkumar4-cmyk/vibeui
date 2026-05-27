@@ -1,6 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import {
+  marketingCard,
+  marketingEyebrow,
+  marketingH2,
+} from "@/lib/marketing-styles";
 
 const testimonials = [
   {
@@ -29,43 +34,31 @@ export function Testimonials() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-3xl px-4">
-        {/* Header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-blue-400">
-            Testimonials
-          </p>
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Loved by builders
-          </h2>
+          <p className={marketingEyebrow}>Testimonials</p>
+          <h2 className={marketingH2}>Loved by builders</h2>
         </div>
 
-        {/* Carousel card */}
-        <div className="relative rounded-2xl border border-white/10 bg-white/5 px-10 py-12 text-center">
-          {/* Open quote mark */}
+        <div className={`${marketingCard} px-10 py-12 text-center`}>
           <div
-            className="mb-6 text-6xl font-serif leading-none text-blue-500/40 select-none"
+            className="mb-6 text-6xl font-serif leading-none text-[rgba(28,28,28,0.15)] select-none"
             aria-hidden="true"
           >
             &ldquo;
           </div>
 
-          {/* Quote */}
-          <blockquote className="mx-auto max-w-xl text-lg leading-8 text-slate-200">
+          <blockquote className="mx-auto max-w-xl text-lg leading-8 text-foreground">
             {testimonials[current].quote}
           </blockquote>
 
-          {/* Author */}
           <div className="mt-8">
-            <p className="text-base font-semibold text-white">
+            <p className="text-base font-semibold text-foreground">
               {testimonials[current].name}
             </p>
-            <p className="mt-1 text-sm text-slate-400">
-              {testimonials[current].role}
-            </p>
+            <p className="mt-1 text-sm text-muted">{testimonials[current].role}</p>
           </div>
         </div>
 
-        {/* Dot navigation */}
         <div className="mt-8 flex items-center justify-center gap-3">
           {testimonials.map((_, i) => (
             <button
@@ -74,8 +67,8 @@ export function Testimonials() {
               aria-label={`Show testimonial ${i + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 i === current
-                  ? "w-6 bg-blue-500"
-                  : "w-2 bg-white/20 hover:bg-white/40"
+                  ? "w-6 bg-foreground"
+                  : "w-2 bg-[rgba(28,28,28,0.15)] hover:bg-[rgba(28,28,28,0.3)]"
               }`}
             />
           ))}
